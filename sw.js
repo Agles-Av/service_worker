@@ -39,7 +39,7 @@ self.addEventListener('activate', event => {
             return Promise.all(
                 cacheNames.map(cacheName => {
                     if (cacheName !== CACHE_NAME) {
-                        enviarEvento('ACTIVACION', Eliminando cache anterior: ${cacheName});
+                        enviarEvento('ACTIVACION', `Eliminando cache anterior: ${cacheName}`);
                         return caches.delete(cacheName);
                     }
                 })
@@ -53,7 +53,7 @@ self.addEventListener('activate', event => {
 
 // Evento fetch - se ejecuta cuando el SW está "ocioso"
 self.addEventListener('fetch', event => {
-    enviarEvento('OSIOSO', Interceptando petición: ${event.request.url});
+    enviarEvento('OSIOSO', `nterceptando petición: ${event.request.url}`);
     
     event.respondWith(
         caches.match(event.request)

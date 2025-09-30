@@ -21,14 +21,14 @@
             const ss = String(ahora.getSeconds()).padStart(2, '0');
             const ll = String(ahora.getMilliseconds()).padStart(3, '0');
             
-            return ${dd}-${mm}-${yyyy}-${hh}-${min}-${ss}-${ll};
+            return `${dd}-${mm}-${yyyy}-${hh}-${min}-${ss}-${ll}`;
         }
 
         // Función para agregar evento a la bitácora
         function agregarEvento(evento, estado) {
             const lista = document.getElementById('bitacora');
             const item = document.createElement('li');
-            item.textContent = ${evento} - ${estado} - ${obtenerFechaHora()};
+            item.textContent = `${evento} - ${estado} - ${obtenerFechaHora()}`;
             lista.appendChild(item);
             
             // Guardar en localStorage para persistencia
@@ -44,7 +44,7 @@
             
             eventos.forEach(evento => {
                 const item = document.createElement('li');
-                item.textContent = ${evento.evento} - ${evento.estado} - ${evento.fecha};
+                item.textContent = `${evento.evento} - ${evento.estado} - ${evento.fecha}`;
                 lista.appendChild(item);
             });
         }
@@ -61,7 +61,7 @@
                         // Monitorear cambios de estado
                         if (registration.installing) {
                             registration.installing.addEventListener('statechange', e => {
-                                agregarEvento('ESPERANDO', Estado: ${e.target.state});
+                                agregarEvento('ESPERANDO', `Estado: ${e.target.state}`);
                             });
                         }
                         
@@ -73,7 +73,7 @@
                         });
                     })
                     .catch(error => {
-                        agregarEvento('ERROR', Error: ${error.message});
+                        agregarEvento('ERROR', `Error: ${error.message}`);
                     });
             } else {
                 agregarEvento('ERROR', 'Service Worker no soportado');
